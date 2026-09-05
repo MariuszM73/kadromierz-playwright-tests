@@ -40,8 +40,8 @@ def test_add_absence(page: Page) -> None:
 
     # Select employee
     page.locator("[data-test=\"select-employee\"]").click()
-    page.locator("[data-test=\"select-searchInput-employee\"]").fill("Staszek Ogórek")
-    page.locator("[data-test=\"select-option-582876\"]").click()
+    page.locator("[data-test=\"select-searchInput-employee\"]").fill(EMPLOYEE_NAME)
+    page.locator("[data-test=\"select-list-employee\"]").get_by_text(EMPLOYEE_NAME, exact=True).click()
 
     # Select absence type
     page.locator("[data-test=\"select-absenceType\"]").click()
