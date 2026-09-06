@@ -8,6 +8,7 @@ VALID_PASSWORD = "Test_01!@#$"
 
 EMPLOYEE_NAME = "Staszek Ogórek"
 ABSENCE_STATUS = "Do rozpatrzenia"
+ABSENCE_TYPE = "Urlop wypoczynkowy"
 
 
 @pytest.fixture(scope="module")
@@ -45,7 +46,7 @@ def test_add_absence(page: Page) -> None:
 
     # Select absence type
     page.locator("[data-test=\"select-absenceType\"]").click()
-    page.locator("[data-test=\"select-option-e1e957c6-db27-48a8-8d47-70d474a1f1db\"]").click()
+    page.locator("[data-test=\"select-list-absenceType\"]").get_by_text(ABSENCE_TYPE, exact=True).click()
 
     # Add a comment
     page.locator("[data-test=\"textarea-absenceComment\"]").fill("TEST")
