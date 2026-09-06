@@ -124,3 +124,24 @@ playwright show-trace test-results/test-name/trace.zip
 ```
 
 Trace Viewer shows an interactive timeline with screenshots, the DOM, network activity, and console logs — very useful for debugging.
+
+## 7. Test Suite Overview
+
+### test_0_critical_path.py
+
+E2E test covering the critical user path in the absence module:
+login → add absence → cancel absence → logout.
+
+Tests in this file depend on each other and must be run together,
+in the order they are defined (they share a single page instance
+via a `scope="module"` fixture).
+
+**Test data:** data used in the scenario (e.g. employee, absence type,
+status) is defined as constants at the top of the file — if needed,
+it can be updated in one place without touching the rest of the code.
+
+Run with:
+
+```bash
+pytest test_0_critical_path.py -v
+```
