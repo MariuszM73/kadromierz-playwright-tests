@@ -59,16 +59,18 @@ def test_add_absence(page: Page) -> None:
 
 
 def test_cancel_absence(page: Page) -> None:
-    # Find the row matching both the employee name and the absence status
+    # Find the row matching the employee name, absence status and absence type
     row = (
         page.locator("[data-test^=\"table-row-\"]")
         .filter(has_text=EMPLOYEE_NAME)
         .filter(has_text=ABSENCE_STATUS)
+        .filter(has_text=ABSENCE_TYPE)
     )
 
-    # Assertion: verify the row actually shows the expected employee and status
+    # Assertion: verify the row actually shows the expected employee, status and absence type
     expect(row.locator("[data-test=\"table-cell-employee\"]")).to_have_text(EMPLOYEE_NAME)
     expect(row.locator(".mdChip")).to_have_text(ABSENCE_STATUS)
+    expect(row.locator("[data-test=\"table-cell-absence_type_name\"]")).to_have_text(ABSENCE_TYPE)
 
     # Open the absence entry
     row.click()
